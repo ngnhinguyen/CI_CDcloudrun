@@ -1,10 +1,13 @@
 steps:
+  # Schritt 1: Docker Image bauen
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build', '-t', 'gcr.io/$PROJECT_ID/manualcloudrun-app:$COMMIT_SHA', '.']
 
+  # Schritt 2: Docker Image in die Container Registry pushen
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/$PROJECT_ID/manualcloudrun-app:$COMMIT_SHA']
 
+  # Schritt 3: Docker Image in Cloud Run deployen
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: 'gcloud'
     args:
@@ -16,8 +19,10 @@ steps:
         '--allow-unauthenticated'
       ]
 
+# Hier werden die Bilder in der Google Container Registry gespeichert
 images:
   - 'gcr.io/$PROJECT_ID/manualcloudrun-app:$COMMIT_SHA'
 
+# Optionen für das Logging, damit der Fehler vermieden wird
 options:
   logging: NONE
