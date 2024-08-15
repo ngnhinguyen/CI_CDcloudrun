@@ -18,5 +18,5 @@ jobs:
 
     - name: Deploy to Cloud Run
       run: gcloud run deploy Nhi1_CICD \
-            --image gcr.io/cr-vs-gke/cicd_cloudrun:v.1.0.0 \
+            --image docker.io/hieristnhi/cicd_cloudrun:v.1.0.0 \
             --region europe-west1
