@@ -22,4 +22,4 @@ steps:
 
 options:
   logging: GCS_ONLY
-  logs_bucket: gs://my-cloud-build-logs
+  logs_bucket: gs://my-project-build-logs2
